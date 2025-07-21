@@ -1,12 +1,9 @@
 
-
-```markdown
 # GlowCore [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 **Версия:** `0.0.1-alpha` | **Пакет:** `org.gfs.glowcore`
 
 Минималистичный игровой движок на Java/LWJGL с эргономичным API для быстрой разработки.
-```
-```
+
 ```java
 import org.gfs.glowcore.GlowCore;
 import org.gfs.glowcore.graphics.Texture;
