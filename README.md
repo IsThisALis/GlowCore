@@ -4,28 +4,6 @@
 
 Минималистичный игровой движок на Java/LWJGL с эргономичным API для быстрой разработки.
 
-```java
-import org.gfs.glowcore.GlowCore;
-import org.gfs.glowcore.graphics.Texture;
-
-public class Demo {
-    public static void main(String[] args) {
-        // 1. Инициализация окна
-        GlowCore.windowInit(800, 600, "Demo Window");
-        
-        // 2. Загрузка ресурсов
-        Texture texture = Texture.loadTexture("assets/rock.png");
-        
-        // 3. Главный цикл рендеринга
-        GlowCore.loop(() -> {
-            // Ваша логика для рендеринга
-        });
-        
-        // 4. Автоматическая очистка
-        GlowCore.cleanup();
-    }
-}
-```
 
 ## ✨ Ключевые преимущества
 - **Интуитивный API** - лаконичные методы (`windowInit(width, height, title)`, `loadTexture(path)`) 
