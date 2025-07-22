@@ -20,6 +20,7 @@
 ## 📦 Установка
 
 x.x.x-alpha:
+
 **Maven**
 
 mvn install:install-file \
@@ -48,11 +49,14 @@ dependencies {
 ```
 
 Groovy DSL:
+```groovy
 dependencies {
     implementation files('libs/glowcore-x.x.x.jar')
 }
+```
 
 x.x.x-beta:
+
 ДАННЫЙ НИЖЕ МЕТОД УСТАНОВКИ БУДЕТ РЕАЛИЗОВАН В beta ВЕРСИИ/!
 Добавьте зависимость в ваш проект:
 
