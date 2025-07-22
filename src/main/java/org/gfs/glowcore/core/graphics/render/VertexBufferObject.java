@@ -11,7 +11,7 @@ public class VertexBufferObject {
     
     public VertexBufferObject() {
         id = glGenBuffers();
-        VBO = getID();
+//        VBO = getID();
     }
     
     

@@ -2,13 +2,21 @@ package org.gfs.glowcore.core;
 
 import org.gfs.glowcore.core.graphics.render.Render;
 import org.gfs.glowcore.core.graphics.scene.Scene;
+import org.gfs.glowcore.core.graphics.render.window.windowUtils;
+import org.gfs.glowcore.core.graphics.render.window.WindowOptions;
+import org.gfs.glowcore.core.util.IAppLogic;
+
+import org.lwjgl.glfw.*;
+
+
+import static org.lwjgl.glfw.GLFW.*;
 
 public class core {
     
     
     public static final int TARGET_UPS = 30;
-    private final IAppLogic appLogic;
-    private final Window window;
+    private IAppLogic appLogic;
+    private windowUtils windowUtils;
     private Render render;
     private boolean running;
     private Scene scene;
@@ -16,10 +24,8 @@ public class core {
     private int targetUps;
     
     
-    
-    
-    public Engine(String windowTitle, Window.WindowOptions opts, IAppLogic appLogic) {
-        window = new Window(windowTitle, opts, () -> {
+    public boolean Engine(String windowTitle, WindowOptions opts, IAppLogic appLogic) {
+        windowUtils = new windowUtils(windowTitle, opts, () -> {
             resize();
             return null;
         });
@@ -58,7 +64,7 @@ public class core {
 
         long updateTime = initialTime;
         while (running && !window.windowShouldClose()) {
-            window.pollEvents();
+            glfwPollEvents();
 
             long now = System.currentTimeMillis();
             deltaUpdate += (now - initialTime) / timeU;

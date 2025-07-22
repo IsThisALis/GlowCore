@@ -13,12 +13,13 @@ public class Textures {
     
     
     public String path;
-    private final int id;
+    private int id;
     private int width;
     private int height;
     
+    private Textures texture;
     
-    public Texture() {
+    public void Texture() {
         id = glGenTextures();
     }
     
@@ -42,6 +43,13 @@ public class Textures {
         return height;
     }
     
+    public String getPath() {
+        return path;
+    }
+    
+    public void setParameter(int id, int value) {
+        glTexParameteri(GL_TEXTURE_2D, id, value);
+    }
     
     public void setHeight(int height) {
         if (height > 0) {
@@ -56,12 +64,16 @@ public class Textures {
         }
     }
     
+    public void uploadData(int internalFormat, int width, int height, int format, ByteBuffer data) {
+        glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+    }
+    
     /**
      * @param data   Picture Data in RGBA format
      */
     
-    public static Texture createTexture(int width, int height, ByteBuffer data) {
-        Texture texture = new Texture();
+    public static Textures createTexture(int width, int height, ByteBuffer data) {
+        Textures textures = new Textures();
         texture.setWidth(width);
         texture.setHeight(height);
 
@@ -78,7 +90,7 @@ public class Textures {
     }
     
     
-    public static Texture loadTexture(String path) {
+    public static Textures loadTexture(String path) {
         ByteBuffer image;
         int width, height;
         try (MemoryStack stack = MemoryStack.stackPush()) {

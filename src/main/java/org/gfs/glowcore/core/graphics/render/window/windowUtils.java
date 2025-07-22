@@ -5,13 +5,11 @@ import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
+
 import org.tinylog.Logger;
 
 import java.util.concurrent.Callable;
 import java.nio.IntBuffer;
-
-
-import static org.gfs.engine.core.graphics.render.window.WindowOptions;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
@@ -28,16 +26,16 @@ public class windowUtils extends WindowOptions {
     int width;
     int height;
     
-    private final long windowHandle;
+    private long windowHandle;
     
     private Callable<Void> resizeFunc;
     
     
     
-    public void cleanupGLFW() {
+    public void cleanup() {
         
-     glfwFreeCallbacks(window);
-     glfwDestroyWindow(window);
+     glfwFreeCallbacks(windowHandle);
+     glfwDestroyWindow(windowHandle);
      glfwTerminate();
      
      GLFWErrorCallback callback = glfwSetErrorCallback(null);
@@ -48,7 +46,7 @@ public class windowUtils extends WindowOptions {
     }
     
     
-    public void windowInit(String title, int width, int height, WindowOptions opts, Callable<Void> resizeFunc) {
+    public void init(String title, int width, int height, WindowOptions opts, Callable<Void> resizeFunc) {
         this.resizeFunc = resizeFunc;
         
          GLFWErrorCallback.createPrint(System.err).set();
@@ -84,21 +82,23 @@ public class windowUtils extends WindowOptions {
         }
        
        windowHandle = glfwCreateWindow(width, height, title, NULL, NULL);
-        Window window = windowHandle
+//        windowUtils windowHandle = windowHandle;
        
        
-        if (window == NULL) {
-           throw new RuntimeException("Failed to create window");
+        if (windowHandle == NULL) {
+           throw new RuntimeException("Failed to create windowHandle");
         }
         
         
-        glfwSetFramebufferSizeCallback(windowHandle, (window, w, h) -> resized(w, h));
+        glfwSetFramebufferSizeCallback(windowHandle, (windowHandle, w, h) -> resized(w, h));
         
         glfwSetErrorCallback((int errorCode, long msgPtr) ->
                 Logger.error("Error code [{}], msg [{}]", errorCode, MemoryUtil.memUTF8(msgPtr)));
 
         glfwSetKeyCallback(windowHandle, (window, key, scancode, action, mods) -> {
-            keyCallBack(key, action);});
+            keyCallBack(key, action);
+        });
+            
             
             
             glfwMakeContextCurrent(windowHandle);
@@ -108,8 +108,6 @@ public class windowUtils extends WindowOptions {
         } else {
             glfwSwapInterval(1);
         }
-
-            glfwShowWindow(windowHandle);
             
             
             
@@ -118,7 +116,7 @@ public class windowUtils extends WindowOptions {
         glfwGetFramebufferSize(windowHandle, arrWidth, arrHeight);
         width = arrWidth[0];
         height = arrHeight[0];
-    
+    winit();
     }
     
     
@@ -130,37 +128,37 @@ public class windowUtils extends WindowOptions {
     
     
     public int closeCheck() {
-              if (glfwWindowShouldClose(window)==true)  {
-                  terminateGLFW(Window window); 
+              if (glfwWindowShouldClose(windowHandle)==true)  {
+                  cleanup(); 
               }
               return 0;
     }
       
       
-    public void framebuffer_size_callback(Window window, int width, int height) {
+    public void framebuffer_size_callback(windowUtils windowHandle, int width, int height) {
          glViewport(0, 0, width, height);
       }
       
       
-    public void init() {
-
+    public void winit() {
 
         
         try (MemoryStack stack = stackPush()) {
+            
             IntBuffer pWidth = stack.mallocInt(1); 
             IntBuffer pHeight = stack.mallocInt(1);
             
-            glfwGetWindowSize(Window window, pWidth, pHeight);
+        glfwGetWindowSize(windowHandle, pWidth, pHeight);
             
             GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
             
-            glfwSetWindowPos(window, (vidmode.width() - pWidth.get(0)) / 2, (vidmode.height() - pHeight.get(0)) / 2);
+            glfwSetWindowPos(windowHandle, (vidmode.width() - pWidth.get(0)) / 2, (vidmode.height() - pHeight.get(0)) / 2);
         }
         
-        glfwMakeContextCurrent(window);
+        glfwMakeContextCurrent(windowHandle);
         // Enable v-sync
         glfwSwapInterval(1);
-        glfwShowWindow(window)
+        glfwShowWindow(windowHandle);
         
         
         
@@ -173,10 +171,10 @@ public class windowUtils extends WindowOptions {
         // Set the clear color
         glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
 
-        while (!glfwWindowShouldClose(window)) {
+        while (!glfwWindowShouldClose(windowHandle)) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-            glfwSwapBuffers(window);
+            glfwSwapBuffers(windowHandle);
 
             glfwPollEvents();
         }
@@ -184,7 +182,7 @@ public class windowUtils extends WindowOptions {
     
 //  getters    
     
-    public long getWindowHandle() {
+    public long getwindowHandle() {
         return windowHandle;
     }
     

@@ -11,29 +11,25 @@ import java.nio.FloatBuffer;
 
 import org.lwjgl.system.MemoryStack;
 
-import org.gfs.engine.core.graphics.shaders.shaderV;
-import org.gfs.engine.core.graphics.shaders.shaderF;
+import org.gfs.glowcore.core.graphics.shaders.shader;
 
 public class shaderProgram {
     
-    private final int id;
+    private int id;
    
     public int ShaderProgram;
     
+    private shader shader;
+    
          
-    public ShaderProgram() {
+    public void ShaderProgram() {
         id = glCreateProgram();
         ShaderProgram = getID();
     }
     
     
-    public void attachShaderV(Shader shader) {
-        glAttachShader(id, shaderV.getIDV());
-    }
-    
-    
-    public void attachShaderF(Shader shader) {
-        glAttachShader(id, shaderF.getIDF());
+    public void attachshader(shader shader) {
+        glAttachShader(id, shader.getID());
     }
     
     
@@ -54,8 +50,7 @@ public class shaderProgram {
     
     
     public void terminateShaders() {
-        glDeleteShader(shaderF.getIDF);
-        glDeleteShader(shaderV.getIDV);
+        glDeleteShader(shader.getID);
     }
     
     

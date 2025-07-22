@@ -3,7 +3,7 @@ package org.gfs.glowcore.core.graphics.render;
 import org.lwjgl.opengl.GL;
 
 import org.gfs.glowcore.core.graphics.render.window.windowUtils;
-import org.gfs.glowcore.core.scene.Scene;
+import org.gfs.glowcore.core.graphics.scene.Scene;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -19,7 +19,7 @@ public class Render {
         // Nothing to be done here yet
     }
 
-    public void render(Window window, Scene scene) {
+    public void render(windowUtils window, Scene scene) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }  
     

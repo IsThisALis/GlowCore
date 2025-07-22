@@ -1,4 +1,4 @@
-package org.gfs.glowcore.graphics.shaders;
+package org.gfs.glowcore.core.graphics.shaders;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -11,13 +11,13 @@ import static org.lwjgl.opengl.GL20.*;
 
 public class shader {
     
-    private final int id;
+    private int id;
     
     String path;
     String type;
     
-    public Shader() {
-    id = glCreateShader(GL_VERTEX_SHADER);
+    public void shader(String type) {
+    id = glCreateShader(type);
     }
     
     public void source(CharSequence source) {
@@ -30,11 +30,11 @@ public class shader {
     }
     
     private void checkStatus() {
-        int status = glGetShader(id), GL_COMPILE_STATUS);
-        if (status != GL_TRUE) {
-            throw new RuntimeException(glGetShaderInfoLog(id));
-        }
+    int status = glGetShaderi(id, GL_COMPILE_STATUS);
+    if (status != GL_TRUE) {
+        throw new RuntimeException(glGetShaderInfoLog(id));
     }
+}
     
     public void delete() {
         glDeleteShader(id);
@@ -44,15 +44,15 @@ public class shader {
         return id;
     }
     
-    public static Shader createShader(String type, CharSequence source) {
-        Shader shader = new Shader(type);
-        shader.source(source);
-        shader.compile();
+    public shader createShader(String type, CharSequence source) {
+        shader shader = new shader(type);
+        source(source);
+        compile();
 
         return shader;
     }
     
-    public static Shader loadShader(String type, String path) {
+    public static shader loadShader(String type, String path) {
         StringBuilder builder = new StringBuilder();
 
         try (InputStream in = new FileInputStream(path);
