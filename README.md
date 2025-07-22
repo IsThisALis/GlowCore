@@ -46,7 +46,7 @@ mvn install:install-file \
 kotlin DSL:
 ```kts
 dependencies {
-    implementation(files("libs/x.x.x.jar"))
+    implementation(files("libs/glowcore-x.x.x.jar"))
 }
 ```
 
