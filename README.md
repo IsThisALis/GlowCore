@@ -23,12 +23,14 @@ x.x.x-alpha:
 
 **Maven**
 
+```
 mvn install:install-file \
    -Dfile=путь_к_файлу.jar \
    -DgroupId=org.gfs \
    -DartifactId=GlowCore \
    -Dversion= \
    -Dpackaging=jar
+```
 
 Затем в pom.xml:
 
