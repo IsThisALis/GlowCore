@@ -18,6 +18,42 @@
 | ОС         | Windows, Linux, macOS     |
 
 ## 📦 Установка
+
+x.x.x-alpha:
+**Maven**
+
+mvn install:install-file \
+   -Dfile=путь_к_файлу.jar \
+   -DgroupId=org.gfs \
+   -DartifactId=GlowCore \
+   -Dversion= \
+   -Dpackaging=jar
+
+Затем в pom.xml:
+
+```xml
+<dependency>
+    <groupId>org.gfs</groupId>
+    <artifactId>glowcore</artifactId>
+    <version>0.0.1-alpha</version>
+</dependency>
+```
+**Gradle**
+
+kotlin DSL:
+```kts
+dependencies {
+    implementation(files("libs/x.x.x.jar"))
+}
+```
+
+Groovy DSL:
+dependencies {
+    implementation files('libs/glowcore-x.x.x.jar')
+}
+
+x.x.x-beta:
+ДАННЫЙ НИЖЕ МЕТОД УСТАНОВКИ БУДЕТ РЕАЛИЗОВАН В beta ВЕРСИИ/!
 Добавьте зависимость в ваш проект:
 
 **Maven:**
