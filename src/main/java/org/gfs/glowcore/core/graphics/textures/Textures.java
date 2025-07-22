@@ -5,39 +5,37 @@ import org.lwjgl.system.MemoryStack;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.GL_CLAMP_TO_BORDER;
 import static org.lwjgl.stb.STBImage.*;
+import static org.lwjgl.opengl.GL30.glGenerateMipmap;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
 public class Textures {
     
-    
     public String path;
     private int id;
     private int width;
     private int height;
     
-    private Textures texture;
-    
-    public void Texture() {
+    public Textures() {
         id = glGenTextures();
     }
-    
     
     public void bind() {
         glBindTexture(GL_TEXTURE_2D, id);
     }
     
+    public void unbind() {
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
     
     public void delete() {
         glDeleteTextures(id);
     }
     
-    
     public int getWidth() {
         return width;
     }
-    
     
     public int getHeight() {
         return height;
@@ -47,8 +45,8 @@ public class Textures {
         return path;
     }
     
-    public void setParameter(int id, int value) {
-        glTexParameteri(GL_TEXTURE_2D, id, value);
+    public void setParameter(int name, int value) {
+        glTexParameteri(GL_TEXTURE_2D, name, value);
     }
     
     public void setHeight(int height) {
@@ -56,7 +54,6 @@ public class Textures {
             this.height = height;
         }
     }
-    
     
     public void setWidth(int width) {
         if (width > 0) {
@@ -68,12 +65,12 @@ public class Textures {
         glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, data);
     }
     
-    /**
-     * @param data   Picture Data in RGBA format
-     */
+    public void generateMipmaps() {
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
     
     public static Textures createTexture(int width, int height, ByteBuffer data) {
-        Textures textures = new Textures();
+        Textures texture = new Textures();
         texture.setWidth(width);
         texture.setHeight(height);
 
@@ -85,33 +82,30 @@ public class Textures {
         texture.setParameter(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
         texture.uploadData(GL_RGBA8, width, height, GL_RGBA, data);
+        texture.generateMipmaps();
+        texture.unbind();
 
+        stbi_image_free(data);
         return texture;
     }
-    
     
     public static Textures loadTexture(String path) {
         ByteBuffer image;
         int width, height;
         try (MemoryStack stack = MemoryStack.stackPush()) {
-            /* Prepare image buffers */
             IntBuffer w = stack.mallocInt(1);
             IntBuffer h = stack.mallocInt(1);
             IntBuffer comp = stack.mallocInt(1);
 
-            /* Load image */
             stbi_set_flip_vertically_on_load(true);
             image = stbi_load(path, w, h, comp, 4);
             if (image == null) {
-                throw new RuntimeException("Failed to load a texture file!"
-                                           + System.lineSeparator() + stbi_failure_reason());
+                throw new RuntimeException("Failed to load texture: " + path + 
+                                          "\nReason: " + stbi_failure_reason());
             }
-
-            /* Get width and height of image */
             width = w.get();
             height = h.get();
         }
-
         return createTexture(width, height, image);
     }
 }

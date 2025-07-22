@@ -6,17 +6,13 @@ import org.gfs.glowcore.core.graphics.render.window.windowUtils;
 import org.gfs.glowcore.core.graphics.render.window.WindowOptions;
 import org.gfs.glowcore.core.util.IAppLogic;
 
-import org.lwjgl.glfw.*;
-
-
 import static org.lwjgl.glfw.GLFW.*;
 
 public class core {
     
-    
     public static final int TARGET_UPS = 30;
     private IAppLogic appLogic;
-    private windowUtils windowUtils;
+    private windowUtils window;
     private Render render;
     private boolean running;
     private Scene scene;
@@ -25,7 +21,7 @@ public class core {
     
     
     public boolean Engine(String windowTitle, WindowOptions opts, IAppLogic appLogic) {
-        windowUtils = new windowUtils(windowTitle, opts, () -> {
+        window = new windowUtils(windowTitle, opts, () -> {
             resize();
             return null;
         });
@@ -36,6 +32,7 @@ public class core {
         scene = new Scene();
         appLogic.init(window, scene, render);
         running = true;
+        return true;
     }
 
     private void cleanup() {
@@ -46,14 +43,8 @@ public class core {
     }
 
     private void resize() {
-     
+        // Реализация метода resize
     }
-    
-    
-    
-    
-    
-//  process-workers methods  
     
     private void run() {
         long initialTime = System.currentTimeMillis();
@@ -100,7 +91,4 @@ public class core {
     public void stop() {
         running = false;
     }
-    
-    
-    
 }
