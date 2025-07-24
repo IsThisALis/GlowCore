@@ -23,58 +23,37 @@ x.x.x-alpha:
 
 **Maven**
 
-```
-mvn install:install-file \
-   -Dfile=путь_к_файлу.jar \
-   -DgroupId=org.gfs \
-   -DartifactId=GlowCore \
-   -Dversion= \
-   -Dpackaging=jar
-```
-
-Затем в pom.xml:
-
+pom.xml:
+    **Замените VERSION на версию релиза который вы используете! Также замените PATH-TO-JAR на ваш путь к .jar!**
+    
 ```xml
 <dependency>
     <groupId>org.gfs</groupId>
     <artifactId>glowcore</artifactId>
-    <version>0.0.1-alpha</version>
+    <version>VERSION</version>
+    <scope>system</scope>
+    <systemPath>PATH-TO-JAR/glowcore-VERSION.jar</systemPath>
 </dependency>
 ```
+
+
 **Gradle**
 
 kotlin DSL:
 ```kts
 dependencies {
-    implementation(files("libs/glowcore-x.x.x.jar"))
+    implementation(files("libs/glowcore-VERSION.jar"))
 }
 ```
 
 Groovy DSL:
 ```groovy
 dependencies {
-    implementation files('libs/glowcore-x.x.x.jar')
+    implementation files('libs/glowcore-VERSION.jar')
 }
 ```
 
-x.x.x-beta:
 
-ДАННЫЙ НИЖЕ МЕТОД УСТАНОВКИ БУДЕТ РЕАЛИЗОВАН В beta ВЕРСИИ/!
-Добавьте зависимость в ваш проект:
-
-**Maven:**
-```xml
-<dependency>
-    <groupId>org.gfs</groupId>
-    <artifactId>glowcore</artifactId>
-    <version>0.0.1-alpha</version>
-</dependency>
-```
-
-**Gradle:**
-```groovy
-implementation 'org.gfs:glowcore:0.0.1-alpha'
-```
 
 ## 🚀 Быстрый старт
 1. Создайте структуру проекта:
