@@ -1,4 +1,4 @@
-package org.gfs.glowcore.core.graphics.render;
+package org.gfs.glowcore.graphics.render;
 
 import static org.lwjgl.opengl.GL30.*;
 

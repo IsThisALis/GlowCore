@@ -1,4 +1,4 @@
-package org.gfs.glowcore.core.graphics.scene;
+package org.gfs.glowcore.graphics.scene;
 
 
 

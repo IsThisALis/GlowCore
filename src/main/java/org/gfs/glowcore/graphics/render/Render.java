@@ -1,9 +1,9 @@
-package org.gfs.glowcore.core.graphics.render;
+package org.gfs.glowcore.graphics.render;
 
 import org.lwjgl.opengl.GL;
 
-import org.gfs.glowcore.core.graphics.render.window.windowUtils;
-import org.gfs.glowcore.core.graphics.scene.Scene;
+import org.gfs.glowcore.graphics.window.windowUtils;
+import org.gfs.glowcore.graphics.scene.Scene;
 
 import static org.lwjgl.opengl.GL11.*;
 

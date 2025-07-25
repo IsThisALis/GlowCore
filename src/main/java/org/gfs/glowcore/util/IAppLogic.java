@@ -1,8 +1,8 @@
-package org.gfs.glowcore.core.util;
+package org.gfs.glowcore.util;
 
-import org.gfs.glowcore.core.graphics.render.Render;
-import org.gfs.glowcore.core.graphics.scene.Scene;
-import org.gfs.glowcore.core.graphics.render.window.windowUtils;
+import org.gfs.glowcore.graphics.render.Render;
+import org.gfs.glowcore.graphics.scene.Scene;
+import org.gfs.glowcore.graphics.window.windowUtils;
 
 /**
  * Интерфейс для реализации логики приложения/игры

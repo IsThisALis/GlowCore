@@ -1,4 +1,4 @@
-package org.gfs.glowcore.core.graphics.render.window;
+package org.gfs.glowcore.graphics.window;
 
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.GL;

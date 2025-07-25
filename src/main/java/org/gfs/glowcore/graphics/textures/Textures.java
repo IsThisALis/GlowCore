@@ -1,4 +1,4 @@
-package org.gfs.glowcore.core.graphics.textures;
+package org.gfs.glowcore.graphics.textures;
 
 import org.lwjgl.system.MemoryStack;
 

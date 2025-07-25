@@ -1,4 +1,4 @@
-package org.gfs.glowcore.core.graphics.render;
+package org.gfs.glowcore.graphics.render;
 
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL30.*;
@@ -10,7 +10,7 @@ public class ElementBufferObject {
         1, 2, 3
     };
     
-    private int id; // ID буфера
+    private int id;
 
     public void genEBO() {
         id = glGenBuffers();

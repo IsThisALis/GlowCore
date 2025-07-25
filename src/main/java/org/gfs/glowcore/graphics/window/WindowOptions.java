@@ -1,4 +1,4 @@
-package org.gfs.glowcore.core.graphics.render.window;
+package org.gfs.glowcore.graphics.window;
 
 import org.gfs.glowcore.core.core;
 

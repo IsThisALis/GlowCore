@@ -1,4 +1,4 @@
-package org.gfs.glowcore.core.graphics.shaders;
+package org.gfs.glowcore.graphics.shaders;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

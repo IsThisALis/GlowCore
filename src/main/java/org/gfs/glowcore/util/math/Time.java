@@ -1,17 +1,9 @@
-package org.gfs.glowcore.core.util.math;
+package org.gfs.glowcore.util.math;
 
 import static org.lwjgl.glfw.GLFW.glfwGetTime;
 
 
-public class math {
-    
-    
-    public float x;
-    public float y;
-    public float z;
-    public float w;
-
-
+public class Time {
     
     public float timeDelta() {
         float deltaTime = 0.0f;
@@ -22,9 +14,4 @@ public class math {
         
         return deltaTime;
     }
-    
-    public int sqrt(int toSqrt) {
-        return toSqrt*toSqrt;
-    }
-    
 }
