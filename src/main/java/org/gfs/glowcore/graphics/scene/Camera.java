@@ -12,6 +12,8 @@ import static org.lwjgl.glfw.GLFW.*;
 
 public class Camera {
     
+    double speed;
+    
     float x = 0;
     float y = 0;
     float z = 0;
@@ -31,6 +33,8 @@ public class Camera {
     this.right = new Vector3f();
     this.up = new Vector3f();
     
+    this.speed = 1;
+    
     calcVecs();
     }
     
@@ -44,12 +48,28 @@ public class Camera {
     
     }
     
+    public boolean keyCallback(int key, int expKey, int action, int expAction) {
+        if(key == expKey && action == expAction) return true;
+         else return false;
+    }
     
-    public void keyCallBack(int key, int action) {
+/*    public void keyCallBackY(int key, int action) {
         if (key == GLFW_KEY_W && action == GLFW_RELEASE) {
-            x++;
+            position+=front*speed*deltaTime();
+        }
+        
+        if(key == GLFW_KEY_S && action == GLFW_RELEASE) {
+            
         }
     }
     
+    public void keyCallBackX() {
+        if(key == GLFW_KEY_A && action == GLFW_RELEASE) {
+            position+=up*speed*deltaTime();
+        }
+        if(key == GLFW_KEY_D && action == GLFW_RELEASE) {
+            
+        }
+    }*/
     
 }
