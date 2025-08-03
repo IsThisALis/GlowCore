@@ -1,16 +1,23 @@
 package org.gfs.glowcore.graphics.scene;
 
 import org.gfs.glowcore.util.math.Time;
+import org.gfs.glowcore.graphics.window.windowUtils
 
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
-import org.joml.*;
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-public class Camera {
+public class Camera2D {
+    
+    private windowUtils window = new windowUtils();
+    
+    private int height = window.getHeight();
+    private int width = window.getWidth();
     
     double speed;
     
@@ -18,58 +25,52 @@ public class Camera {
     float y = 0;
     float z = 0;
     
+    private Matrix4f projectionMatrix;
+    private Matrix4f viewMatrix;
     private Vector3f position;
-    private Vector3f front;
-    private Vector3f up;
-    private Vector3f right;
-    private Vector3f worldUp;
+    private Vector3f rotation;
+    
+    
+    private float zoomFactor = 1f;
+    private float aspectRatio;
+    
+    
+    private float projectionLeft;
+    private float projectionRight;
+    private float projectionBottom;
+    private float projectionTop;
+    
+    const float nearPlane = -100.0f;
+    const float farPlane = 100.0f;
     
     public Camera() {
         
     
     this.position = new Vector3f(0, 0, 3);
-    this.front = new Vector3f(0, 0, -1);
-    this.worldUp = new Vector3f(0, 1, 0);
-    this.right = new Vector3f();
-    this.up = new Vector3f();
     
     this.speed = 1;
     
-    calcVecs();
+    
     }
-    
-    
-    
-    public void calcVecs() {
+    public void update() {
         
-    front = front.normalize();
-    right = front.cross(worldUp).normalize();
-    up = right.cross(front).normalize();
-    
+        aspectRatio = width/height;
+        
+        projectionTop = zoom;
+        projectionBottom = -zoom;
+        projectionRight = aspectRatio*zoom;
+        projectionLeft = -aspectRatio*zoom;
+        
+        
+        
+        
     }
     
+    
+
     public boolean keyCallback(int key, int expKey, int action, int expAction) {
         if(key == expKey && action == expAction) return true;
          else return false;
     }
-    
-/*    public void keyCallBackY(int key, int action) {
-        if (key == GLFW_KEY_W && action == GLFW_RELEASE) {
-            position+=front*speed*deltaTime();
-        }
-        
-        if(key == GLFW_KEY_S && action == GLFW_RELEASE) {
-            
-        }
-    }
-    
-    public void keyCallBackX() {
-        if(key == GLFW_KEY_A && action == GLFW_RELEASE) {
-            position+=up*speed*deltaTime();
-        }
-        if(key == GLFW_KEY_D && action == GLFW_RELEASE) {
-            
-        }
-    }*/
     
 }
