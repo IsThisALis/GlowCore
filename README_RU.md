@@ -24,7 +24,7 @@
 **Maven**
 
 pom.xml:
-**Замените VERSION на версию релиза который вы используете! Также замените PATH-TO-JAR на ваш путь к .jar!**
+**Замените: FILENAME на имя файла релиза! PATH-TO-JAR на ваш путь к .jar!**
 
 ```xml
 <dependency>
@@ -32,7 +32,7 @@ pom.xml:
 <artifactId>glowcore</artifactId>
 <version>VERSION</version>
 <scope>system</scope>
-<systemPath>PATH-TO-JAR/glowcore-VERSION.jar</systemPath>
+<systemPath>PATH-TO-JAR/FILENAME.jar</systemPath>
 </dependency>
 ```
 
@@ -41,58 +41,14 @@ pom.xml:
 Kotlin DSL:
 ```kts
 dependencies {
-implementation(files("libs/glowcore-VERSION.jar"))
+implementation(files("libs/FILENAME.jar"))
 }
 ```
 
 Groovy DSL:
 ```groovy
 dependencies {
-implementation files('libs/glowcore-VERSION.jar')
-}
-```
-
-## 🚀 Быстрый старт
-1. Создайте структуру проекта:
-```
-src/
-└── main/
-├── java/
-│ └── yourgame/
-│ └── Main.java
-└── resources/
-└── assets/
-└── textures/
-└── player.png
-```
-
-2. Пример кода (Main.java):
-```java
-package yourgame;
-
-import org.gfs.glowcore.graphics.*;
-import org.gfs.glowcore.graphics.Texture;
-
-public class Main {
-public static void main(String[] args) {
-// Инициализация окна
-GlowCore.windowInit(1280, 720, "GlowCore Game");
-
-// Загрузка текстуры
-Texture playerTex = Texture.loadTexture("assets/textures/player.png");
-
-// Главный цикл
-GlowCore.loop(() -> {
-renderPlayer(playerTex);
-});
-
-// Очистка ресурсов
-GlowCore.cleanup();
-}
-
-private static void renderPlayer(Texture texture) {
-// Реализация рендеринга
-}
+implementation files('libs/FILENAME.jar')
 }
 ```
 
@@ -111,7 +67,7 @@ private static void renderPlayer(Texture texture) {
 
 > 🚧 **Активная разработка**
 > Скриншоты и расширенные примеры будут добавлены в следующих релизах
-> Вопросы и предложения: [GitHub Issues](https://github.com/BronzeCode/GlowCore/issues)
+> Вопросы и предложения: [GitHub Issues](https://github.com/IsThisALis/GlowCore/issues)
 
 > 🔄 **Планируемые изменения**
 > Планируется переход на более мягкую лицензию в будущих релизах

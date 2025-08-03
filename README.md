@@ -1,13 +1,13 @@
 # GlowCore [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 **Version:** `0.0.1-alpha` | **Package:** `org.gfs.glowcore`
 
-A minimalist game engine in Java/LWJGL with an ergonomic API for rapid development.
+A minimalistic game engine in Java/LWJGL with an ergonomic API for rapid development.
 
-[Русская версия](README_RU.md)
+[English Version](README.md)
 
-## ✨ Key Features
+## ✨ Key Advantages
 - **Intuitive API** - concise methods (`windowInit(width, height, title)`, `loadTexture(path)`)
-- **Safe resource management** - automatic memory release
+- **Safe resource management** - automatic memory deallocation
 
 ## ⚙️ Requirements
 | Component | Minimum Version |
@@ -24,7 +24,7 @@ A minimalist game engine in Java/LWJGL with an ergonomic API for rapid developme
 **Maven**
 
 pom.xml:
-**Replace VERSION with the release version you are using! Also replace PATH-TO-JAR with your path to the .jar!**
+**Replace: FILENAME with the release file name! PATH-TO-JAR with your path to .jar!**
 
 ```xml
 <dependency>
@@ -32,7 +32,7 @@ pom.xml:
 <artifactId>glowcore</artifactId>
 <version>VERSION</version>
 <scope>system</scope>
-<systemPath>PATH-TO-JAR/glowcore-VERSION.jar</systemPath>
+<systemPath>PATH-TO-JAR/FILENAME.jar</systemPath>
 </dependency>
 ```
 
@@ -41,58 +41,14 @@ pom.xml:
 Kotlin DSL:
 ```kts
 dependencies {
-implementation(files("libs/glowcore-VERSION.jar"))
+implementation(files("libs/FILENAME.jar"))
 }
 ```
 
 Groovy DSL:
 ```groovy
 dependencies {
-implementation files('libs/glowcore-VERSION.jar')
-}
-```
-
-## 🚀 Quick Start
-1. Create the project structure:
-```
-src/
-└── main/
-├── java/
-│ └── yourgame/
-│ └── Main.java
-└── resources/
-└── assets/
-└── textures/
-└── player.png
-```
-
-2. Example code (Main.java):
-```java
-package yourgame;
-
-import org.gfs.glowcore.graphics.*;
-import org.gfs.glowcore.graphics.Texture;
-
-public class Main {
-public static void main(String[] args) {
-// Initialize window
-GlowCore.windowInit(1280, 720, "GlowCore Game");
-
-// Load texture
-Texture playerTex = Texture.loadTexture("assets/textures/player.png");
-
-// Main loop
-GlowCore.loop(() -> {
-renderPlayer(playerTex);
-});
-
-// Cleanup resources
-GlowCore.cleanup();
-}
-
-private static void renderPlayer(Texture texture) {
-// Rendering implementation
-}
+implementation files('libs/FILENAME.jar')
 }
 ```
 
@@ -111,7 +67,7 @@ The project is licensed under [GNU GPLv3](LICENSE). Required:
 
 > 🚧 **Active Development**
 > Screenshots and extended examples will be added in future releases
-> Questions and suggestions: [GitHub Issues](https://github.com/BronzeCode/GlowCore/issues)
+> Questions and suggestions: [GitHub Issues](https://github.com/IsThisALis/GlowCore/issues)
 
 > 🔄 **Planned Changes**
-> A transition to a more permissive license is planned for future releases
+> Planned transition to a more permissive license in future releases
